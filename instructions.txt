@@ -1,0 +1,27 @@
+Jenkins Task 2
+Versioned Cowsay 
+----------------
+This is a Jenkins Classic exercise. 
+In this exercise you are required to create a "Release" Job for an "on-prem" application.
+The first part will create a manually triggered job, and after that it will be git triggered.
+
+Instructions:
+-------------
+- create a manual jenkins job that accepts version parameter (e.g. 1.2)
+- write script for the job that:
+
+  If branch release/{x.y} does not exist:
+      - creates the branch from latest master
+      - updates version.txt to reflect the branch "x.y"
+      - pushes the branch, with new version.txt
+If branch release/{x.y} does exist:
+  pull sources and checkout release/{x.y}
+  calculate and set a 3-number version in version.txt
+  build
+  test the release
+  push to Docker-Hub using the release as the image tag 
+  git clean & git tag & git push tag
+
+
+Create another job that uses script to release automatically on any commit for branch release/{v}
+The release will make a “Deployment” to your local machine
